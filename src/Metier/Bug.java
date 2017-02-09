@@ -175,7 +175,7 @@ public class Bug
 			
 			if(listBug.isEmpty() == false)
 			{
-				System.out.println("taille de listBug :"+listBug.size());
+				System.out.println("Bug.getBugDuringPeriod()    -   ListBug size:"+listBug.size());
 			}
 		}				
 	}

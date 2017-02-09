@@ -39,9 +39,9 @@ public class EquipmentTest
 	}
 
 	@Test
-	public void testgetMoreInfoforSP()
+	public void testgetAll()
 	{
-		System.out.println("\n   testgetMoreInfoforSP()");
+		System.out.println("\n   testgetAll()");
 		Equipment TempEquipment = new Equipment ();
 		
 		ArrayList<StrategicPoint> listEquipment = new ArrayList<StrategicPoint> ();

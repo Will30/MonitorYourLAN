@@ -42,8 +42,6 @@ public class Mail
 		System.out.println("*********************************  Recipient "+this.recipient);
 		
 		Properties props = new Properties();
-		String subject = "Activation de votre compte";
-		String emailBody = "Bonjour, l'accès à MonitorYourLAN vient d'être activé. Cordialement";
 		
 		//Using TLS
 	//	props.put("mail.smtp.auth", "true");

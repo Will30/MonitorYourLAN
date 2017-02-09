@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Metier.Mail;
 import Metier.User;
 
 public class UserTest {
@@ -86,9 +87,11 @@ public class UserTest {
 	public void sendActivationMail()
 	{
 		User user = new User();
+		Mail mail = new Mail();
+		
 		user.setUsername("cyril");
 		user.setPassword("MyMonitor");
-		user.setEmail("c.mathieu.30470@gmail.com");
+		user.setEmail("***@gmail.com");
 		
 		boolean mailSent = user.sendActivationMail();
 
