@@ -51,6 +51,7 @@ public class Equipment extends StrategicPoint
 	{
 		super.led = new Led();
 		super.service = new Service(); 
+		super.listBug = new ArrayList<Bug>();
 	}
 	
 	@Override
@@ -91,7 +92,7 @@ public class Equipment extends StrategicPoint
 					((Equipment) listEquipment.get(i)).setModel(jsonObject.getString("model"));
 					
 					
-					listEquipment.get(i).setListBug();
+					//listEquipment.get(i).setListBug();
 					
 					url ="http://"+SERVER_NAME+":"+PORT_NUMBER+"/equipments/"+listEquipment.get(i).getID();
 					
@@ -223,8 +224,8 @@ public class Equipment extends StrategicPoint
 		{
 			stateConnexion = tempJson.getInt("status");
 			super.setID(tempJson.getInt("id"));
-			System.out.println("Equipment.Add()      Last ID --> "+tempJson.getInt("id"));
-			System.out.println("Equipment.Add() status -->"+stateConnexion);
+			System.out.println("Equipment.Add()     Last ID --> "+tempJson.getInt("id"));
+			System.out.println("Equipment.Add() 	status -->"+stateConnexion);
 			
 		} 
 		catch (JSONException e1) 

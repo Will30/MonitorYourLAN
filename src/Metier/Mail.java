@@ -9,10 +9,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.snmp4j.TransportMapping;
+import org.snmp4j.transport.TransportStateEvent;
+
 /**
  * @author Cyril or Will30 (GitHub) or Will15 (GitLab)
  * @version 1.00
- * Class for mail using SMTP protocol and javax.mail-1.4.5.jar library
+ * Class for mail using SMTP protocol and SNMP4J.jar library
  */
 public class Mail 
 {
@@ -74,11 +77,10 @@ public class Mail
 	      message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(this.recipient));
 	      message.setSubject(this.subject);
 	      message.setText(this.emailBody);
-	      Transport.send(message);
-	
+	      Transport.send(message);	
+	      
 	      System.out.println("Mail.sendMail() Mail sent");
-	      mailSent = true ;
-	  
+	      mailSent = true ;	  
 	  } 
 	  catch (Exception e) 
 	  {

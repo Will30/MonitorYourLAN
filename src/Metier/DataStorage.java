@@ -44,6 +44,7 @@ public class DataStorage extends StrategicPoint
 	{
 		super.led = new Led();
 		super.service = new Service(); 
+		super.listBug = new ArrayList<Bug>();
 	}
 
 	@Override
@@ -85,7 +86,7 @@ public class DataStorage extends StrategicPoint
 					
 					((DataStorage) listdataStorage.get(i)).setLastDate(jsonObject.getString("lastfile"));				
 					
-					listdataStorage.get(i).setListBug();
+			//		listdataStorage.get(i).setListBug();
 				}
 			} 
 			
@@ -150,7 +151,9 @@ public class DataStorage extends StrategicPoint
 		try 
 		{
 			stateConnexion = tempJson.getInt("status");
-			System.out.println("status -->"+stateConnexion);
+			super.setID(tempJson.getInt("id"));
+			System.out.println("DataStorage.Add()   Last ID --> "+tempJson.getInt("id"));
+			System.out.println("DataStorage.Add() 	Status -->"+stateConnexion);
 			
 		} 
 		catch (JSONException e1) 
@@ -161,7 +164,15 @@ public class DataStorage extends StrategicPoint
 		
 		return (stateConnexion);
 	}
-
+	
+	/**
+	 * Function which delete a strategic point
+	 * @version 1.00
+	 */
+	public void delete()
+	{
+		super.delete();
+	}
 
 	@Override
 	public String convertImageToBase64(String type) 
@@ -169,8 +180,7 @@ public class DataStorage extends StrategicPoint
 		File  file= null;
 		String encodedImage = null;
 		BufferedImage originalImage;
-		file= new File("src/images/icones/dataStorage.png");
-						
+		file= new File("src/images/icones/dataStorage.png");						
 		
 		try 
 		{
@@ -217,7 +227,7 @@ public class DataStorage extends StrategicPoint
 		} 
 		catch (UnknownHostException e) 
 		{
-			System.out.println("Unknown host, please check manually with PING command");
+			System.out.println("DataStorage.detectSP() - Bad IP address format");
 			e.printStackTrace();
 		}
 	
@@ -230,7 +240,7 @@ public class DataStorage extends StrategicPoint
 			} 
 			else 
 			{
-				System.out.println(this.getName() + ": Unable to detect the StrategicPoint - Unable to communicate with ");
+				System.out.println("DataStorage.detectSP() - "+this.getName() + ": Unable to detect the StrategicPoint - Unable to communicate with ");
 				this.getLed().setID((byte)1);		// id => 1 equals to black color
 	
 			}
@@ -248,8 +258,7 @@ public class DataStorage extends StrategicPoint
 	 */
 	
 	public void diagnose(ArrayList<Bug> listBugIntoDatabase)
-	{
-		
+	{		
 		Date lastCreation = null;
 		int lastModifiedDay;
 		int lastModifiedHours;
@@ -259,8 +268,7 @@ public class DataStorage extends StrategicPoint
 		int actualMinutes;
 		int difference = 0;
 		
-		int numberFiles;
-		
+		int numberFiles;		
 		
 		//For this project test, our file will be called "archive.txt"
 		String tempUNC;
@@ -268,24 +276,24 @@ public class DataStorage extends StrategicPoint
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.FRANCE);
 		Date date = new Date();
-		System.out.println("Date :"+dateFormat.format(date)); //2013/10/15 16:16:39
+		System.out.println("DataStorage.diagnose()   - Date :"+dateFormat.format(date)); //2013/10/15 16:16:39
 		
 		// For counting existing files in folder
 		numberFiles = new File("\\"+"\\"+this.getIPAddress()+"\\"+this.getUNC()+"\\").list().length;	
-		System.out.println("Numbers of files  --> "+numberFiles);
+		System.out.println("DataStorage.diagnose()   - Numbers of files  --> "+numberFiles);
 		
 		tempUNC="\\"+"\\"+this.getIPAddress()+"\\"+this.getUNC()+"\\"+"archive"+numberFiles+".txt";
 		file = new File(tempUNC);
 		if(file.exists())
 		{
-			System.out.println("Files exists");
+			System.out.println("DataStorage.diagnose()   - Files exists");
 			
 			lastCreation = new Date (file.lastModified());		
-			System.out.println("Last modification "+dateFormat.format(lastCreation));
+			System.out.println("DataStorage.diagnose()   - Last modification "+dateFormat.format(lastCreation));
 		}	
 		else
 		{
-			System.out.println("Files doesn't exists");
+			System.out.println("DataStorage.diagnose()   - Files doesn't exists");
 		}
 		
 	
@@ -327,7 +335,7 @@ public class DataStorage extends StrategicPoint
 			difference = difference + (60 +(actualMinutes + lastModifiedMinutes));
 		}
 		
-		System.out.println("(TOTAL) Last update is --> "+difference+" minutes");
+		System.out.println("DataStorage.diagnose()   - (TOTAL) Last update is --> "+difference+" minutes");
 	
 		
 		if(difference > listBugIntoDatabase.get(9).getThresholdValue())  			// Corresponds to the minimal alert (5 minutes) ==> DataStorageMinimalAlert

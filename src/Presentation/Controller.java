@@ -229,10 +229,8 @@ public class Controller extends JFrame implements ActionListener
 			
 			if(tempID != 0)			{		
 				
-				this.setIdUser(tempID);	
-				
-				this.getContentPane().removeAll();
-	
+				this.setIdUser(tempID);					
+				this.getContentPane().removeAll();	
 				
 				this.setBounds((screenWidth-1280)/2, (screenHeight-1024)/2, 1280, 1024);
 					  
@@ -557,7 +555,7 @@ public class Controller extends JFrame implements ActionListener
 				{
 					for(int i=0;i<tempListSP.size();i++)
 					{
-						System.out.println("Supression de l'élément id:"+tempListSP.get(i).getID());							
+						System.out.println("Deleting strategic point id:"+tempListSP.get(i).getID());							
 						
 						for(int j=0;j<listSPs.size();j++)
 						{

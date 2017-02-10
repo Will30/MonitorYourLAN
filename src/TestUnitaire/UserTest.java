@@ -84,19 +84,19 @@ public class UserTest {
 		
 	}
 	@Test
-	public void sendActivationMail()
+	public void testSendActivationMail()
 	{
 		User user = new User();
-		Mail mail = new Mail();
 		
 		user.setUsername("cyril");
 		user.setPassword("MyMonitor");
-		user.setEmail("***@gmail.com");
+		user.setEmail("***@gmail.com"); // enter a real mail address
 		
 		boolean mailSent = user.sendActivationMail();
 
 		assertTrue("Mail sent successfully",mailSent == true);
 		
+		System.out.println("Mailsent :"+mailSent);
 		if(mailSent == false)
 		{
 			fail("Mail transmission error");		
@@ -104,7 +104,7 @@ public class UserTest {
 	}
 	
 	@Test
-	public void updateAccount()
+	public void testUpdateAccount()
 	{
 		User user = new User();
 		

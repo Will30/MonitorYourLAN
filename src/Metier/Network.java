@@ -36,13 +36,13 @@ public class Network extends StrategicPoint
 	{
 		super.led = new Led();
 		super.service = new Service(); 
+		super.listBug = new ArrayList<Bug>();
 	}
 
 
 	@Override
 	public void getAll(ArrayList<StrategicPoint> listNetwork)
 	{	
-
 		String url ="http://"+SERVER_NAME+":"+PORT_NUMBER+"/networks/";
 		int j=0;
 		int listLenght = listNetwork.size();
@@ -76,7 +76,7 @@ public class Network extends StrategicPoint
 
 					((Network) listNetwork.get(i)).setIPAddress2(jsonObject.getString("IPaddress2"));	
 					
-					listNetwork.get(i).setListBug();
+				//	listNetwork.get(i).setListBug();
 				}
 			} 
 			
@@ -135,8 +135,9 @@ public class Network extends StrategicPoint
 		try 
 		{
 			stateConnexion = tempJson.getInt("status");
-			System.out.println("status -->"+stateConnexion);
-			
+			super.setID(tempJson.getInt("id"));
+			System.out.println("Network.Add()   Last ID --> "+tempJson.getInt("id"));
+			System.out.println("Network.Add() 	Status -->"+stateConnexion);			
 		} 
 		catch (JSONException e1) 
 		{
@@ -147,7 +148,14 @@ public class Network extends StrategicPoint
 		return (stateConnexion);
 	}
 
-	
+	/**
+	 * Function which delete a strategic point
+	 * @version 1.00
+	 */
+	public void delete()
+	{
+		super.delete();
+	}
 	
 
 	/**
