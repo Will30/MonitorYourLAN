@@ -19,9 +19,6 @@ public class Led
 	
 	private Solution solution;
 	
-	/**
-	 * 
-	 */
 	
 	public Led()
 	{

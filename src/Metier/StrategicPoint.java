@@ -34,12 +34,12 @@ public abstract class StrategicPoint
 	private String IPAddress;						// for example "10.111.60.30"
 	private String location;	
 	private String icon=null;
+	
 	protected Service service;
 	protected Led led;
+	protected  ArrayList<Bug> listBug;
 	
-	private boolean statusChanged=false;	
-	private  ArrayList<Bug> listBug;
-	
+	private boolean statusChanged=false;		
 	
 	public StrategicPoint() 
 	{

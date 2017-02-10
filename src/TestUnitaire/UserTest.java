@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Metier.Mail;
 import Metier.User;
 
 public class UserTest {
@@ -83,17 +84,19 @@ public class UserTest {
 		
 	}
 	@Test
-	public void sendActivationMail()
+	public void testSendActivationMail()
 	{
 		User user = new User();
+		
 		user.setUsername("cyril");
 		user.setPassword("MyMonitor");
-		user.setEmail("c.mathieu.30470@gmail.com");
+		user.setEmail("***@gmail.com"); // enter a real mail address
 		
 		boolean mailSent = user.sendActivationMail();
 
 		assertTrue("Mail sent successfully",mailSent == true);
 		
+		System.out.println("Mailsent :"+mailSent);
 		if(mailSent == false)
 		{
 			fail("Mail transmission error");		
@@ -101,7 +104,7 @@ public class UserTest {
 	}
 	
 	@Test
-	public void updateAccount()
+	public void testUpdateAccount()
 	{
 		User user = new User();
 		

@@ -26,8 +26,7 @@ public class User
 	
 	protected byte adminAccess = 0;
 	protected byte mailReceived = 0;
-	protected byte accountEnable = 0;
-	
+	protected byte accountEnable = 0;	
 	
 	
 	public User() 
@@ -217,7 +216,9 @@ public class User
 	{
 		Mail email = new Mail();
 		String tempBody="Bonjour "+this.username+", \n \nL'accès à MonitorYourLAN vient d'être activé. \nPour rappel voici vos identifiants: \nVotre nom d'utilisateur : "+this.username+"\nVotre mot de passe: "+this.password+" \n \n Cordialement \n L'équipe MonitorYourLan";
-
+		
+		email.setUsername("***@gmail.com");     // enter a sender address mail
+		email.setPassword("***");				// enter a sender password
 		email.setRecipient(this.email);
 		email.setSubject("Activation de votre compte MonitorYourLAN");
 		email.setEmailBody(tempBody);
